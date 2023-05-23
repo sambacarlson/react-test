@@ -1,8 +1,17 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { navProps } from "../props/props";
 
 export default function NavBar(props: navProps) {
   const [showMenu, setShowMenu] = useState<boolean>(false);
+  const [screenWidth, setScreenWidth] = useState<number>(window.innerWidth);
+  // the useEffect bellow makes sure the navbar elements will always show on larger screen sizes
+  useEffect(() => {
+    const handleResize = () => {
+      setScreenWidth(window.innerWidth);
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
   return (
     <div className="NavComponent">
       <div
@@ -22,13 +31,17 @@ export default function NavBar(props: navProps) {
             />
           </svg>
         </div>
+        <p>{props.selected}</p>
       </div>
-      {showMenu && (
+      {(showMenu || screenWidth >= 1000) && (
         <div className="navbarContents">
           {props.titles.map((title) => (
             <div
               key={props.titles.indexOf(title) + title}
-              onClick={() => props.selectFn(title)}
+              onClick={() => {
+                props.selectFn(title);
+                setShowMenu(false);
+              }}
               className={props.selected === title ? "selectedMenuItem" : ""}
             >
               <p>{title}</p>

@@ -8,15 +8,14 @@ export default function GameCard(props: gameProps) {
     let catArray = props.categories;
     let selCat = props.currentSelection;
     // we will show top for games that are both in top and new
-    selCat!=="top" && catArray.includes("top") && setCategory("top");
-    selCat!=="top" && catArray.includes("new") && setCategory("new");
-    selCat!=="new" && catArray.includes("top") && setCategory("top");
-    selCat!=="new" && catArray.includes("new") && setCategory("new");
-    selCat==="new" && catArray.includes("new") && setCategory("");
-    selCat==="new" && catArray.includes("top") && setCategory("top");
-    selCat==="top" && catArray.includes("top") && setCategory("");
-    selCat==="top" && catArray.includes("new") && setCategory("new");    
-    
+    selCat !== "top" && catArray.includes("top") && setCategory("top");
+    selCat !== "top" && catArray.includes("new") && setCategory("new");
+    selCat !== "new" && catArray.includes("top") && setCategory("top");
+    selCat !== "new" && catArray.includes("new") && setCategory("new");
+    selCat === "new" && catArray.includes("new") && setCategory("");
+    selCat === "new" && catArray.includes("top") && setCategory("top");
+    selCat === "top" && catArray.includes("top") && setCategory("");
+    selCat === "top" && catArray.includes("new") && setCategory("new");
   }, [props.categories, props.currentSelection]);
   return (
     <div
@@ -27,6 +26,11 @@ export default function GameCard(props: gameProps) {
       {category && (
         <div className="gameCardRibbon">
           <p>{category}</p>
+        </div>
+      )}
+      {props.jackpot!==undefined && (
+        <div className="gameCardJackpot">
+          <h5>&pound;{props.jackpot}</h5>
         </div>
       )}
       {hovered && (

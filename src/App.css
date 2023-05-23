@@ -17,16 +17,22 @@
     width: 50%;
     background-color: var(--primary-color);
   }
-  .NavComponent div {
+  .navbarContents div {
+    height: 50px;
     padding-left: 24px;
-    min-height: 40px;
-    color: var(--white-color);
     display: flex;
-    flex-direction: column;
+    align-items: center;
+  }
+  .NavComponent div {
+    color: var(--white-color);
   }
   .NavComponent .menuButton {
+    margin-left: 24px;
     display: flex;
-    padding-left: 0;
+    flex-direction: row;
+    justify-content: center;
+    gap: 30px;
+    align-items: center;
     width: fit-content;
     height: 100%;
   }
@@ -34,11 +40,11 @@
     cursor: pointer;
   }
 }
-@media (min-width: 1000px) {
+@media (min-width: 999px) {
   .NavComponent {
     background-color: var(--primary-color);
-    min-height: 60px;
-    max-height: 80px;
+    min-height: 90px;
+    max-height: 110px;
     width: 100%;
     position: sticky;
     top: 0;
@@ -154,5 +160,19 @@
   padding: 10px 22px;
 }
 .gameCardHovered {
-  opacity: 0.6;
+  opacity: 0.2;
+}
+.gameCardJackpot {
+  position: absolute;
+  top: 0;
+  background-color: var(--primary-color);
+  width: 100%;
+  text-align: center;
+  border-radius: 16px 16px 0 0;
+  opacity: 0.8;
+}
+.gameCardJackpot h5 {
+  color: var(--white-color);
+  margin: 0;
+  padding: 8px 0;
 }
